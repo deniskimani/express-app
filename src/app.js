@@ -34,15 +34,15 @@ app.get('/strings/lower/:string', (req, res) => {
   res.json({ result: lowercase(req.params.string) });
 });
 
-app.get('/strings/first-character/:string', (req, res) => {
-  res.json({ result: firstCharacter(req.params.string) });
-});
-
 app.get('/strings/first-characters/:string', async (req, res) => {
   const params = req.params.string.toString();
   const query = parseInt(req.query.length);
 
-  res.status(200).json({ result: firstCharacters(params, query) });
+  if (Object.keys(req.query).length === 0) {
+    res.json({ result: firstCharacter(req.params.string) });
+  } else {
+    res.status(200).json({ result: firstCharacters(params, query) });
+  }
 });
 
 app.get('/numbers/add/:a/and/:b', (req, res) => {

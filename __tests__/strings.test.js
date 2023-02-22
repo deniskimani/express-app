@@ -50,7 +50,7 @@ describe('/strings', () => {
   describe('GET /first-characters/{string}', () => {
     it('returns the first character of the string when there is no query string', done => {
       request(app)
-        .get('/strings/first-character/hello')
+        .get('/strings/first-characters/hello')
         .then(res => {
           expect(res.status).toEqual(200);
           expect(res.body).toEqual({ result: 'h' });
